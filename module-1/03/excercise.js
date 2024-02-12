@@ -17,7 +17,8 @@ for (let i = 1; i <= 10; i++) {
 console.log(message);
 
 // Write a code to check whether a string is a palindrome or not
-let string = "amma";
+let string = "amsma";
+console.log(string.split("").reverse().join(""));
 let stringLength = string.length;
 message = `${string} is a palindrome`;
 
@@ -40,9 +41,9 @@ console.log(message);
 
 // Write a code to format number as currency (IDR)
 let number2 = 10000;
-let currency = number2.toLocaleString("in-ID", {
+let currency = number2.toLocaleString("en-US", {
   style: "currency",
-  currency: "IDR",
+  currency: "usd",
 });
 console.log(currency);
 

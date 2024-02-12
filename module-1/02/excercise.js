@@ -63,6 +63,11 @@ for (let i = 1; i <= numberN; i++) {
   calc = number1 + number2;
   number1 = number2;
   number2 = calc;
-  message += i == 1 ? `${number1}` : `, ${number1}`;
+  if (i == 1) {
+    message += `${number1}`;
+  } else {
+    message += `, ${number1}`;
+  }
+  // message += i == 1 ? `${number1}` : `, ${number1}`;
 }
 console.log(message);
