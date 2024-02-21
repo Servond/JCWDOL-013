@@ -1,0 +1,15 @@
+{
+    "name": "Umbrella",
+    "price": 125000,
+    "material": "plastic",
+    "variant": [
+        {
+            "color" : "red",
+            "available" : false
+        },
+        {
+            "color": "green",
+            "available": true
+        }
+    ]
+}

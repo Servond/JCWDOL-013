@@ -54,7 +54,7 @@ console.log(message);
 
 // Write a code to print the first N fibonacci numbers
 calc = 0;
-numberN = 10;
+numberN = 3;
 let number1 = 0;
 let number2 = 1;
 message = `First ${numberN} of fibonacci = ${number1}, `;

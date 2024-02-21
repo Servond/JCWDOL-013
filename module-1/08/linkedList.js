@@ -8,13 +8,14 @@ const list = {
         value: 3,
         next: {
           value: 4,
+          next: null,
         },
       },
     },
   },
 };
 
-console.log(list.head.next.next.next);
+console.log(list.head);
 
 // implementation
 
@@ -26,26 +27,29 @@ class Node {
 
 class LinkedList {
   constructor() {
-    this.head = null;
+    this.head;
     this.size = 0;
   }
 
   add(element) {
     let node = new Node(element);
-
     let current;
-
+    console.log(this.head);
     if (this.head == null) {
       this.head = node;
-      console.log(node);
+      console.log(this.head);
     } else {
+      console.log(current);
       current = this.head;
-
+      console.log(current);
+      console.log(element);
       while (current.next) {
+        console.log("belom masuk");
         current = current.next;
       }
-
+      console.log(current.next);
       current.next = node;
+      console.log(current.next);
       console.log(current);
     }
 
@@ -59,6 +63,7 @@ class LinkedList {
       list.push(curr.element);
       console.log(curr.element);
       curr = curr.next;
+      console.log(curr);
     }
 
     return list;
@@ -159,11 +164,17 @@ class LinkedList {
 const linkedList = new LinkedList();
 linkedList.add("a");
 linkedList.add("b");
+linkedList.add("c");
+
+console.log(linkedList.printList());
+linkedList.removeElement("b");
+console.log(linkedList.printList());
+
 // linkedList.add("c");
 // linkedList.add("d");
 // linkedList.add("e");
 // linkedList.insertAt("f", 2);
-linkedList.removeElement("a");
-linkedList.removeAt(3);
-console.log(linkedList.printList());
-console.log(linkedList.indexOf("a"));
+// linkedList.removeElement("a");
+// linkedList.removeAt(3);
+// console.log(linkedList.printList());
+// console.log(linkedList.indexOf("a"));

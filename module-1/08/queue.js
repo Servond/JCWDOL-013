@@ -22,5 +22,8 @@ queue.enqueue(3);
 console.log(queue.getElement());
 
 queue.dequeue();
+queue.enqueue(1);
 queue.dequeue();
+queue.enqueue(1);
+
 console.log(queue.getElement());
