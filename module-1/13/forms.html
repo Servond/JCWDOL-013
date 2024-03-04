@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Ini Formulir</h1>
+            <p>
+                <a href="index.html">Home</a>
+            </p>
+        </div>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Data Diri</legend>
+                <label for="username">Username:</label>
+                <input type="text" name="username" required/> <br />
+                <label for="password">Password:</label>
+                <input type="password" name="password" maxlength="10" required/> <br />
+                <input type="checkbox" name="check" /> <br />
+                <input type="radio" name="radio" /> <br />
+                <input type="number" name="number" min="1" max="10" /> <br />
+                <textarea rows="3" cols="64"></textarea> <br />
+                <p>Apa warna favoritmu?</p>
+                <select>
+                    <option>Merah</option>
+                    <option>Biru</option>
+                    <option>Kuning</option>
+                </select>
+                <p>Apa makanan favoritmu?</p>
+                <select>
+                    <option>Telur</option>
+                    <option>Pete</option>
+                    <option selected>Jengkol</option>
+                </select>
+                <input type="submit" value="Submit" />
+                <!-- <button type="submit">OK</button> -->
+            </fieldset>
+        </form>
+        <hr />
+        <button type="button">OK</button>
+        <button type="button" onclick="doSomething()">Apply</button>
+    </div>
+</body>
+</html>
+
+<script>
+    function doSomething() {
+        console.log("Button diklik")
+    }
+</script>

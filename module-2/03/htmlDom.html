@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="htmlDom.js"></script> -->
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="myElement">Original Text</h1>
+    <button onclick="updateText()">Update Text</button>
+    <button onclick="updateStyle()">Update Style</button>
+    <br />
+
+    <div id="konten1">
+      <h1 id="title1">Ini adalah Create Element</h1>
+      <p id="desc1">Akan menambahkan element baru</p>
+    </div>
+    <button onclick="newElement()">Create Element</button>
+    <button onclick="removeElement()">Remove Element</button>
+    <br />
+
+    <button onClick="addListener()">Add listener to other button</button>
+    <button id="myButton">Alert</button>
+
+    <script>
+      function addListener() {
+        const element = document.getElementById("myButton");
+        element.addEventListener("click", function () {
+          alert("Button Diklik");
+        });
+      }
+
+      function updateText() {
+        const element = document.getElementById("myElement");
+        element.innerHTML = "<p>This is a new Paragraph</p>";
+      }
+
+      function updateStyle() {
+        const element = document.getElementById("myElement");
+        element.setAttribute("style", "font-size: 18px");
+
+        element.style.color = "blue";
+      }
+
+      function newElement() {
+        const newH2 = document.createElement("h2");
+        newH2.textContent = "Ini adalah element baru";
+
+        const parentElement = document.getElementById("konten1");
+        // parentElement.appendChild(newH2);
+
+        const siblingElement = document.getElementById("desc1");
+        parentElement.insertBefore(newH2, siblingElement);
+      }
+
+      function removeElement() {
+        const element = document.getElementById("title1");
+        const parent = element.parentNode;
+        parent.removeChild(element);
+      }
+    </script>
+  </body>
+</html>

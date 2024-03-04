@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .box1 {
+            width: 400px;
+            height: 400px;
+            margin: 50px;
+            background-color: purple;
+            /* transform: translate(200px,100px);
+            transform: rotate(20deg); */
+            /* transform: translateX(100px) translateY(200px); */
+            /* transform: scaleX(2) skew(40deg);
+            perspective: 700px; */
+        }
+
+        .box2 {
+            transform: perspective(700px) rotateY(25deg);
+             width: 400px;
+            height: 400px;
+            margin: 50px;
+            background-color: purple;
+        }
+
+        .box3 {
+            transform: perspective(150px) rotateY(25deg);
+             width: 400px;
+            height: 400px;
+            margin: 50px;
+            background-color: purple;
+        }
+
+        .box4 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: example;
+            animation-duration: 4s;
+        }
+
+        @keyframes example {
+            from {
+                background-color: red;
+            }
+            to {
+                background-color: yellow;
+            }
+        }
+
+        .box5 {
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(red, green, yellow, blue);
+            animation-name: example2;
+            /* animation-duration: 4s; */
+            animation: example2 4s infinite
+        }
+
+        @keyframes example2 {
+            50% {transform: rotate(180deg)}
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <!-- <div class="box3"></div> -->
+    <div class="box4"></div>
+    <div class="box5"></div>
+</body>
+</html>
