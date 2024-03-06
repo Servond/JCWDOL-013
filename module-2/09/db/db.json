@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Budi",
+      "email": "budi@gmail.com",
+      "password": "asd123",
+      "age": 21
+    },
+    {
+      "name": "rendy",
+      "email": "rendy@gmail.com",
+      "password": "asd123",
+      "age": "15",
+      "id": 2
+    }
+  ]
+}

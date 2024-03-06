@@ -25,7 +25,7 @@ function reducer(state: CountState, action: CountAction) {
   }
 }
 
-export default function UseReducer() {
+export default function ComponentUseReducer() {
   const [state, dispatch] = useReducer(reducer, { count: 0 });
 
   const increment = () => {
