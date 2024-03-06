@@ -10,6 +10,7 @@ export default function Home() {
     >
       <Container>
         <CustomTable />
+        <img src="/scen.jpg" alt="gambar" />
       </Container>
     </Box>
   );

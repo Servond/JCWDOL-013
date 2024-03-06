@@ -13,6 +13,34 @@
       "password": "asd123",
       "age": "15",
       "id": 2
+    },
+    {
+      "name": "test",
+      "email": "test@gmail.com",
+      "password": "asd123",
+      "age": "5",
+      "id": 3
+    },
+    {
+      "name": "asd",
+      "email": "asd@gmail.com",
+      "password": "asd123",
+      "age": "15",
+      "id": 4
+    },
+    {
+      "name": "mudi",
+      "email": "mudi@gmail.com",
+      "password": "asd123",
+      "age": "22",
+      "id": 5
+    },
+    {
+      "name": "Budi",
+      "email": "budi@gmail.com",
+      "password": "asd123",
+      "age": "15",
+      "id": 6
     }
   ]
 }
