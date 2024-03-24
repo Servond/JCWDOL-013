@@ -1,45 +1,40 @@
-import { Box, Button, FormControl, Input } from "@chakra-ui/react";
-import { useState, createContext, useContext } from "react";
+import { useState } from "react";
 
-const ThemeContext = createContext("");
+interface IProps {
+  theme: string;
+}
 
 export default function Context() {
   const [theme, setTheme] = useState<string>("light");
-  console.log(theme);
   return (
-    <ThemeContext.Provider value={theme}>
-      <Box>
-        <Form />
-        <Button
-          onClick={() => {
-            setTheme("light");
-          }}
-        >
-          Set Theme to Light
-        </Button>
-      </Box>
-    </ThemeContext.Provider>
+    <div>
+      <Form theme={theme} />
+      <button
+        onClick={() => {
+          setTheme("light");
+        }}
+      >
+        Set Theme to Light
+      </button>
+    </div>
   );
 }
 
-function Form() {
-  const theme = useContext(ThemeContext);
+function Form(props: IProps) {
   return (
-    <form className={theme}>
-      <FormControl>
-        <Input type="text" name="name" />
-        <CustomButton />
-      </FormControl>
+    <form className={props.theme}>
+      <div>
+        <input type="text" name="name" />
+        <CustomButton theme={props.theme} />
+      </div>
     </form>
   );
 }
 
-function CustomButton() {
-  const theme = useContext(ThemeContext);
-
+function CustomButton(props: IProps) {
   return (
-    <Button className={theme} type="submit">
+    <button className={props.theme} type="submit">
       Submit
-    </Button>
+    </button>
   );
 }

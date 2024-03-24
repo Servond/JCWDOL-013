@@ -11,7 +11,7 @@ export default function ComponentUseCallback() {
 
   const addTodo = useCallback(() => {
     setTodos((t) => [...t, "New Todo"]);
-  }, []);
+  }, [todos]);
 
   return (
     <div>

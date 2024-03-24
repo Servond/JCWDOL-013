@@ -1,6 +1,5 @@
-import { Box, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, decrement } from "../../redux/counter";
+import { increment, decrement } from "./counterslice";
 
 export default function Counter() {
   const count = useSelector(
@@ -9,10 +8,10 @@ export default function Counter() {
   const dispatch = useDispatch();
 
   return (
-    <Box>
-      <Button onClick={() => dispatch(increment())}>Increment</Button>
-      <Box as="span">{count}</Box>
-      <Button onClick={() => dispatch(decrement())}>Decrement</Button>
-    </Box>
+    <div>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <span>{count}</span>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
+    </div>
   );
 }

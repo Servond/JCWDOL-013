@@ -22,7 +22,7 @@ function App() {
       {/* <ComponentUseMemo /> */}
       {/* <ComponentUseContext /> */}
       {/* <ComponentUseReducer /> */}
-      {/* <ComponentUseCallback /> */}
+      <ComponentUseCallback />
     </>
   );
 }

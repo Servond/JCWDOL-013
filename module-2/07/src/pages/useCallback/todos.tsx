@@ -1,9 +1,11 @@
+import { memo } from "react";
+
 interface ITodos {
   todos: string[];
   addTodo: () => void;
 }
 
-export default function Todos(props: ITodos) {
+const Todos = (props: ITodos) => {
   const { todos, addTodo } = props;
 
   console.log("child render");
@@ -16,4 +18,6 @@ export default function Todos(props: ITodos) {
       <button onClick={addTodo}>Add Todo</button>
     </div>
   );
-}
+};
+
+export default memo(Todos);
