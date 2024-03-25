@@ -3,4 +3,5 @@ export interface Expense {
   name: string;
   nominal: number;
   category: string;
+  expense_date?: Date;
 }
