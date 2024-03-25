@@ -53,7 +53,7 @@ async function createExpenseController(
   try {
     const { name, nominal, category } = req.body;
 
-    const data = await createExpenseAction({
+    const data: Expense = await createExpenseAction({
       name,
       nominal: Number(nominal),
       category,
@@ -76,7 +76,7 @@ async function updateExpenseController(
   try {
     const { id } = req.params;
 
-    const data = await updateExpenseAction(Number(id), req.body);
+    const data: Expense = await updateExpenseAction(Number(id), req.body);
 
     res.status(200).json({
       message: "Update expense success",
