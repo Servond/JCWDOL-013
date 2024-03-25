@@ -1,0 +1,16 @@
+{
+  "expenses": [
+    {
+      "id": 1,
+      "name": "Electricity Bills",
+      "nominal": 500000,
+      "category": "Utility"
+    },
+    {
+      "name": "Water Bill",
+      "nominal": 94000,
+      "category": "Utility",
+      "id": 2
+    }
+  ]
+}
