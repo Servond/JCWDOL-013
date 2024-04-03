@@ -27,4 +27,21 @@ const getUserByEmailOrUsernameQuery = async (
   }
 };
 
-export { getUserByEmailOrUsernameQuery };
+const getUserByEmailQuery = async (email: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      include: {
+        role: true,
+      },
+      where: {
+        email,
+      },
+    });
+
+    return user;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export { getUserByEmailOrUsernameQuery, getUserByEmailQuery };

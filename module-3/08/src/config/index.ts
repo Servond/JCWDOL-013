@@ -3,4 +3,4 @@ config({
   path: ".env",
 });
 
-export const { API_PORT } = process.env;
+export const { API_PORT, API_KEY } = process.env;

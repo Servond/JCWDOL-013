@@ -1,8 +1,14 @@
 import { User } from "@prisma/client";
 import { Auth } from "../interfaces/auth.interface";
-import { getUserByEmailOrUsernameQuery } from "../queries/user.query";
+import {
+  getUserByEmailOrUsernameQuery,
+  getUserByEmailQuery,
+} from "../queries/user.query";
 import { loginQuery, registerQuery } from "../queries/auth.query";
 import { HttpException } from "../exceptions/HttpException";
+import { genSalt, hash, compare } from "bcrypt";
+import { API_KEY } from "../config";
+import { sign } from "jsonwebtoken";
 
 const registerAction = async (data: User): Promise<User> => {
   try {
@@ -13,7 +19,12 @@ const registerAction = async (data: User): Promise<User> => {
 
     if (check) throw new Error("user already exist");
 
-    const user = await registerQuery(data);
+    const salt = await genSalt(10);
+    console.log(salt);
+    const hashPass = await hash(data.password, salt);
+    console.log(hashPass);
+
+    const user = await registerQuery(data, hashPass);
 
     return user;
   } catch (err) {
@@ -23,11 +34,24 @@ const registerAction = async (data: User): Promise<User> => {
 
 const loginAction = async (data: Auth) => {
   try {
-    const user = await loginQuery(data);
+    const user = await getUserByEmailQuery(data.email);
 
-    if (!user) throw new Error("Password or Email incorrect");
+    if (!user) throw new Error("email doesnt exist");
 
-    return user;
+    // if (data.password === user.password)
+
+    const isValid = await compare(data.password, user.password);
+
+    if (!isValid) throw new Error("password is wrong");
+
+    const payload = {
+      email: user.email,
+      username: user.username,
+      role: user.role.name,
+    };
+    const token = sign(payload, String(API_KEY), { expiresIn: "1h" });
+
+    return { user, token };
   } catch (err) {
     throw err;
   }

@@ -4,13 +4,15 @@ import { Auth } from "../interfaces/auth.interface";
 
 const prisma = new PrismaClient();
 
-const registerQuery = async (data: User): Promise<User> => {
+const registerQuery = async (data: User, pass: string): Promise<User> => {
   try {
     const t = await prisma.$transaction(async (prisma) => {
       try {
         const user = await prisma.user.create({
           data: {
-            ...data,
+            username: data.username,
+            email: data.email,
+            password: pass,
           },
         });
         return user;

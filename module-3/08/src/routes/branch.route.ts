@@ -7,10 +7,11 @@ import {
   deleteBranchController,
   agregateBranchController,
 } from "../controllers/branch.controller";
+import { verifyToken } from "../middlewares/auth.middleware";
 
 const router = express.Router();
 
-router.post("/", createBranchController);
+router.post("/", verifyToken, createBranchController);
 router.get("/", getBranchesController);
 router.get("/agregate", agregateBranchController);
 router.get("/:id", getBranchController);
