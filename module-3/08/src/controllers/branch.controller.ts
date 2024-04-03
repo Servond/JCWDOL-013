@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import {
+  agregateBranchAction,
   createBranchAction,
   deleteBranchAction,
   getBranchAction,
@@ -14,9 +15,9 @@ const createBranchController = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { branchName, location } = req.body;
+    const { name, branchName, location } = req.body;
 
-    const data = await createBranchAction(branchName, location);
+    const data = await createBranchAction(name, branchName, location);
 
     res.status(200).json({
       message: "Create branch success",
@@ -103,10 +104,27 @@ const deleteBranchController = async (
   }
 };
 
+const agregateBranchController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    await agregateBranchAction();
+
+    res.status(200).json({
+      message: "Aggregate success",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export {
   createBranchController,
   getBranchesController,
   getBranchController,
   updateBranchController,
   deleteBranchController,
+  agregateBranchController,
 };

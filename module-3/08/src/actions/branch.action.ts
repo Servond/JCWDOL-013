@@ -1,19 +1,26 @@
 import { Branch } from "@prisma/client";
 import {
+  agregateBranchQuery,
   createBranchQuery,
   deleteBranchQuery,
   getBranchQuery,
   getBranchesQuery,
   updateBranchQuery,
+  getBranchByNameQuery,
 } from "../queries/branch.query";
 import { HttpException } from "../exceptions/HttpException";
 
 const createBranchAction = async (
+  name: string,
   branchName: string,
   location: string
 ): Promise<Branch> => {
   try {
-    const branch = await createBranchQuery(branchName, location);
+    const check = await getBranchByNameQuery(branchName);
+
+    if (check) throw new Error("Branch name already exist");
+
+    const branch = await createBranchQuery(name, branchName, location);
 
     return branch;
   } catch (err) {
@@ -72,10 +79,18 @@ const deleteBranchAction = async (id: number): Promise<Branch> => {
   }
 };
 
+const agregateBranchAction = async (): Promise<void> => {
+  try {
+    await agregateBranchQuery();
+  } catch (err) {
+    throw err;
+  }
+};
 export {
   createBranchAction,
   getBranchesAction,
   getBranchAction,
   updateBranchAction,
   deleteBranchAction,
+  agregateBranchAction,
 };

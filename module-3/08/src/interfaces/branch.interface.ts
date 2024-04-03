@@ -1,6 +1,6 @@
 export interface Branch {
   id?: number;
-  branchName: string;
+  name: string;
   location: string;
   createdAt: Date;
   updatedAt: Date;

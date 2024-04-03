@@ -4,15 +4,45 @@ import { Branch } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const createBranchQuery = async (
+  name: string,
   branchName: string,
   location: string
 ): Promise<Branch> => {
   try {
-    const branch = await prisma.branch.create({
-      data: {
-        branchName,
-        location,
-      },
+    const t = await prisma.$transaction(async (prisma) => {
+      try {
+        const manager = await prisma.manager.create({
+          data: {
+            name,
+          },
+        });
+
+        const branch = await prisma.branch.create({
+          data: {
+            branchName,
+            location,
+            managerId: manager?.id,
+          },
+        });
+
+        return branch;
+      } catch (err) {
+        throw err;
+      }
+    });
+
+    return t;
+
+    // return branch;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getBranchByNameQuery = async (name: string): Promise<Branch | null> => {
+  try {
+    const branch = await prisma.branch.findFirst({
+      where: { branchName: name },
     });
 
     return branch;
@@ -31,7 +61,6 @@ const getBranchesQuery = async (filters: {
     const { branchName, location, page, pageSize } = filters;
     const skipPage =
       Number(page) > 1 ? (Number(page) - 1) * Number(pageSize) : 0;
-    console.log(branchName);
     const branches = await prisma.branch.findMany({
       skip: skipPage,
       take: Number(pageSize),
@@ -110,10 +139,32 @@ const deleteBranchQuery = async (id: number): Promise<Branch> => {
   }
 };
 
+const agregateBranchQuery = async (): Promise<void> => {
+  try {
+    const branch = await prisma.branch.aggregate({
+      _count: {
+        _all: true,
+      },
+      _min: {
+        createdAt: true,
+      },
+      _max: {
+        createdAt: true,
+      },
+    });
+
+    console.log(branch);
+  } catch (err) {
+    throw err;
+  }
+};
+
 export {
   createBranchQuery,
   getBranchesQuery,
   getBranchQuery,
   updateBranchQuery,
   deleteBranchQuery,
+  getBranchByNameQuery,
+  agregateBranchQuery,
 };
