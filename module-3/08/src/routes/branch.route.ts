@@ -7,12 +7,20 @@ import {
   deleteBranchController,
   agregateBranchController,
 } from "../controllers/branch.controller";
-import { verifyToken } from "../middlewares/auth.middleware";
-
+import { adminGuard, verifyToken } from "../middlewares/auth.middleware";
+import { createBranchValidator } from "../helpers/validator";
+import dataValidation from "../middlewares/validator.middleware";
 const router = express.Router();
 
-router.post("/", verifyToken, createBranchController);
-router.get("/", getBranchesController);
+router.post(
+  "/",
+  verifyToken,
+  adminGuard,
+  createBranchValidator,
+  dataValidation,
+  createBranchController
+);
+router.get("/", verifyToken, getBranchesController);
 router.get("/agregate", agregateBranchController);
 router.get("/:id", getBranchController);
 router.patch("/:id", updateBranchController);

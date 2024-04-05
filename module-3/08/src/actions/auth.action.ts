@@ -10,7 +10,7 @@ import { genSalt, hash, compare } from "bcrypt";
 import { API_KEY } from "../config";
 import { sign } from "jsonwebtoken";
 
-const registerAction = async (data: User): Promise<User> => {
+const registerAction = async (data: User, avatar: string): Promise<User> => {
   try {
     const check = await getUserByEmailOrUsernameQuery(
       data.email,
@@ -24,7 +24,7 @@ const registerAction = async (data: User): Promise<User> => {
     const hashPass = await hash(data.password, salt);
     console.log(hashPass);
 
-    const user = await registerQuery(data, hashPass);
+    const user = await registerQuery(data, hashPass, avatar);
 
     return user;
   } catch (err) {
@@ -45,6 +45,7 @@ const loginAction = async (data: Auth) => {
     if (!isValid) throw new Error("password is wrong");
 
     const payload = {
+      userId: user.id,
       email: user.email,
       username: user.username,
       role: user.role.name,
